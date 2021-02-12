@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+  pg:
+    image: postgres
+    restart: always
+    ports:
+    - "5433:5432"
+    
+    environment:
+    - POSTGRES_PASSWORD=example
+    - POSTGRES_USER=employee_user
+    - POSTGRES_DB=employee_db
+  activemq:
+    image: webcenter/activemq
+    restart: always
+    ports:
+    - 61613:61613
+    - 61616:61616
+    - 8161:8161
+    environment:
+    - ACTIVEMQ_ADMIN_LOGIN=admin
+    - ACTIVEMQ_ADMIN_PASSWORD=admin

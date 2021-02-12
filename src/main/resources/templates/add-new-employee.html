@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.getJSON("http://localhost:8090/employees",
+                    function (result) {
+                    $.each(result, function (key, value) {
+                        $("#employeesJson").append(key + value + " ");
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Get all employees</button>
+<div id="employeesJson"></div>
+</body>
+</html>

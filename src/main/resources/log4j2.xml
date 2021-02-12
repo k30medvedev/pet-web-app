@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <File name="LogToFile" fileName="logs/debug.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+        <File name="LogToFileErrors" fileName="logs/error.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="LogToFileWarns" fileName="logs/warns.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="LogToFileFatal" fileName="logs/fatal.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+    <Root level="trace">
+            <AppenderRef ref="LogToFile" level="DEBUG"/>
+            <AppenderRef ref="LogToFileErrors" level="WARN"/>
+            <AppenderRef ref="LogToFileErrors" level="ERROR"/>
+            <AppenderRef ref="LogToFileWarns" level="FATAL"/>
+            <AppenderRef ref="LogToConsole" level="INFO"/>
+        </Root>
+    </Loggers>
+
+        </Configuration>

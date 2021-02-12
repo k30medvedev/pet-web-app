@@ -1,0 +1,18 @@
+<form>
+    Insert id:
+    <input type="text" id="username"/>
+    <input type="submit" value="Submit" onClick="receiveId()"/>
+</form>
+
+<script>
+    function receiveId() {
+        localStorage.clear();
+        var ans1 = document.getElementById('username').value
+        localStorage.setItem("name", ans1);
+    }
+
+    if ("name" in localStorage) {
+        window.location.href = 'find-by-id';
+    }
+</script>
+

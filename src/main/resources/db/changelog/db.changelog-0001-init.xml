@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="0001-01-employee" author="Kirill.Medvedev">
+        <sql>
+            CREATE TABLE IF NOT EXISTS employee(
+            employee_id SERIAL PRIMARY KEY,
+            first_name TEXT NOT NULL,
+            last_name TEXT NOT NULL,
+            department_id INTEGER NOT NULL,
+            job_title TEXT NOT NULL,
+            gender TEXT NOT NULL,
+            date_of_birth DATE NOT NULL
+            );
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE [IF EXISTS] employee
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
