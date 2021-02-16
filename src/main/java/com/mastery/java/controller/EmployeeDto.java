@@ -3,22 +3,23 @@ package com.mastery.java.controller;
 import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Component
 @Schema(description = "User entity")
-public class EmployeeDto {
+public class EmployeeDto implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     @Id
     @Column(name = "employee_id")
     private Long id;
+
 
     @Schema(description = "First name, text only", example = "Anna")
     @NotNull

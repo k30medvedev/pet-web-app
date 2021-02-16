@@ -5,22 +5,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("button").click(function () {
-                $.getJSON("http://localhost:8090/employees",
-                    (data) => $("div").html(data.employees.reduce((sum, em) => sum + "<br>"
-                        +"id:" + em.id + "-"
-                        + em.firstName + " "
-                        + em.lastName + "</<b> : "
-                        + em.gender + "-"
-                        + em.jobTitle + " - "
-                        + em.birthday + "<br>", "")));
-            });
+            $.getJSON("http://localhost:8090/employees",
+                (data) => $("div").html(data.employees.reduce((sum, em) => sum + "<br>"
+                    + "id:" + em.id + "-"
+                    + em.firstName + " "
+                    + em.lastName + "</<b> : "
+                    + em.gender + "-"
+                    + em.jobTitle + " - "
+                    + em.birthday + "<br>", "")));
         });
     </script>
 </head>
 <body>
-
-<button>Get all employees</button>
 <div id="employeesJson"></div>
 </body>
 </html>

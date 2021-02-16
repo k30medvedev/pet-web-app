@@ -24,7 +24,7 @@ class EmployeeCreateServiceTest {
     }
 
     @Test
-    void shouldCreateUserTest() throws DepartmentIdMustBePositiveException {
+    void shouldCreateUserTest() throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         //GIVEN
         EmployeeEntity employeeEntity = mock(EmployeeEntity.class);
         LocalDate birthday = LocalDate.of(1988, 3, 15);
@@ -47,7 +47,7 @@ class EmployeeCreateServiceTest {
     }
 
     @Test
-    void departmentIdMustBePositiveExceptionTest() throws DepartmentIdMustBePositiveException {
+    void departmentIdMustBePositiveExceptionTest() throws DepartmentIdMustBePositiveException, InvalidDigitalException {
 
         //GIVEN
         EmployeeEntity employeeEntity = mock(EmployeeEntity.class);

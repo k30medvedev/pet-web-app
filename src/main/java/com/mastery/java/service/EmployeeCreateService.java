@@ -17,7 +17,7 @@ public class EmployeeCreateService {
         this.employeeValidationService = employeeValidationService;
     }
 
-    public EmployeeEntity createUser(EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException {
+    public EmployeeEntity createUser(EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         employeeValidationService.validateUser(employeeEntity);
         return employeeRepository.save(employeeEntity);
     }

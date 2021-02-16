@@ -37,7 +37,7 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public EmployeeEntity createUser(EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException {
+    public EmployeeEntity createUser(EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         return employeeCreateService.createUser(employeeEntity);
     }
 

@@ -4,6 +4,7 @@ import com.mastery.java.jms.producer.JmsProducer;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.service.DepartmentIdMustBePositiveException;
 import com.mastery.java.service.EmployeeService;
+import com.mastery.java.service.InvalidDigitalException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
@@ -44,11 +45,10 @@ public class EmployeeController {
             description = "Post/Insert operation when you need to add new employee"
     )
     @PostMapping("/employees")
-    EmployeeDto createUser(@RequestBody EmployeeCreationDto dto)
-            throws DepartmentIdMustBePositiveException {
-        jmsProducer.send(dto);
+    EmployeeDto createUser(@RequestBody EmployeeCreationDto dto) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         EmployeeEntity employeeEntity = employeeDtoConverter.convertDtoToEmployee(dto);
         employeeEntity = employeeService.createUser(employeeEntity);
+        jmsProducer.send(employeeEntity);
         logger.info("New employee is creating");
         return employeeDtoConverter.convertEmployeeToDto(employeeEntity);
 
@@ -60,9 +60,11 @@ public class EmployeeController {
     )
     @PutMapping("/employees/{id}")
     EmployeeDto updateUserById(@PathVariable Long id, @RequestBody EmployeeUpdateDto dto)
-            throws DepartmentIdMustBePositiveException {
+            throws DepartmentIdMustBePositiveException
+    {
         EmployeeUpdateReq req = employeeDtoConverter.convertDtoToEmployee(id, dto);
         EmployeeEntity employeeEntity = employeeService.updateUser(req);
+        jmsProducer.send(employeeEntity);
         logger.info("The employee is updating");
         return employeeDtoConverter.convertEmployeeToDto(employeeEntity);
     }
@@ -91,6 +93,7 @@ public class EmployeeController {
         EmployeeDeleteDto dto = new EmployeeDeleteDto();
         employeeService.deleteById(id);
         EmployeeEntity employeeEntity = employeeService.findById(id);
+        jmsProducer.send(employeeEntity);
         dto.setId(employeeEntity.getId());
         logger.info("The employee is requested to delete,id: " + id);
         return dto;

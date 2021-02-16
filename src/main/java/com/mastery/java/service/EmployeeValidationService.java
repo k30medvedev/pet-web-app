@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class EmployeeValidationService {
     private static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
 
-    public void validateUser(@NotNull @Valid EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException {
+    public void validateUser(@NotNull @Valid EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         Integer departmentId = employeeEntity.getDepartmentId();
         if (departmentId <= 0) {
             logger.error("Id department must be more then 0.Your chose is : ");
@@ -24,9 +24,17 @@ public class EmployeeValidationService {
 
         String checkGender = employeeEntity.getGender();
         if (!(checkGender.equals("M") | checkGender.equals("F"))) {
-            logger.error("Invalid gender, Please choose M for man or W for woman : ");
+            logger.error("Invalid gender");
             throw new InvalidGenderException(checkGender);
         }
+
+        String firstName = employeeEntity.getFirstName();
+        String lastName = employeeEntity.getLastName();
+        String expression = "[A-Z][a-z]*";
+        if (!firstName.matches(expression) | !lastName.matches(expression)){
+            throw new InvalidDigitalException(firstName);
+        }
+
     }
 
     public void validateUserUpdateReq(@NotNull EmployeeEntity employeeEntity, @Valid EmployeeUpdateReq updateReq) throws DepartmentIdMustBePositiveException {

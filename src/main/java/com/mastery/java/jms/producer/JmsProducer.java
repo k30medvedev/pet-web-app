@@ -1,8 +1,8 @@
 package com.mastery.java.jms.producer;
 
 
-import com.mastery.java.controller.EmployeeCreationDto;
 import com.mastery.java.jms.consumer.JmsConsumer;
+import com.mastery.java.model.EmployeeEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +22,9 @@ public class JmsProducer {
         this.jmsTemplate = jmsTemplate;
     }
 
-    public void send(EmployeeCreationDto dto) {
-        jmsTemplate.convertAndSend(queue, dto);
-        logger.info("Employee was sent");
+    public void send(EmployeeEntity employeeEntity) {
+            jmsTemplate.convertAndSend(queue, employeeEntity);
+            logger.info("Employee was sent");
+
     }
 }

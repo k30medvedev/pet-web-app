@@ -1,14 +1,20 @@
 package com.mastery.java.controller;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.persistence.Column;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Schema(description = "Employee Creation Dto")
-public class EmployeeCreationDto {
+public class EmployeeCreationDto implements Serializable {
+
 
     @Schema(description = "First name, text only", example = "Anna")
     @NotNull
@@ -35,6 +41,8 @@ public class EmployeeCreationDto {
     @Column(name = "gender")
     private String gender;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @PastOrPresent
     @NotNull
     @Column(name = "date_of_birth")
