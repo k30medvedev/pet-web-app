@@ -10,3 +10,8 @@ Restful,postgresql
 7. JMS (ActiveMQ) + 
 8. Liquibase +
 9. Docker +
+
+To-do:
+add SSL to Jms;
+add Spring Security;
+complite UI HTML/CSS;
