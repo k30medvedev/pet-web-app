@@ -5,19 +5,28 @@ services:
     image: postgres
     restart: always
     ports:
-    - "5433:5432"
-    
+      - "5433:5432"
+
     environment:
-    - POSTGRES_PASSWORD=example
-    - POSTGRES_USER=employee_user
-    - POSTGRES_DB=employee_db
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_USER=employee_user
+      - POSTGRES_DB=employee_db
   activemq:
     image: webcenter/activemq
     restart: always
     ports:
-    - 61613:61613
-    - 61616:61616
-    - 8161:8161
+      - 61613:61613
+      - 61616:61616
+      - 8161:8161
     environment:
-    - ACTIVEMQ_ADMIN_LOGIN=admin
-    - ACTIVEMQ_ADMIN_PASSWORD=admin
+      - user= admin
+      - password= admin
+      - broker-url= tcp://localhost:61616
+      - queueName=main-queue
+
+  myapp:
+    image: app:1.0.3
+    ports:
+      - 8050:8090
+    environment:
+      SPRING_PROFILES_ACTIVE: docker

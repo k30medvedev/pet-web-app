@@ -2,6 +2,7 @@ package com.mastery.java.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class EmployeeViewController {
@@ -29,6 +30,11 @@ public class EmployeeViewController {
     @GetMapping("/find-by-id")
     public String viewEmployeeById() {
         return "find-by-id";
+    }
+
+    @GetMapping("/add-new-employee")
+    public String addNewEmployee() {
+        return "add-new-employee";
     }
 
     @GetMapping("/")

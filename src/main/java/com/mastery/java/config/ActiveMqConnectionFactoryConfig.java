@@ -19,13 +19,13 @@ import javax.jms.ConnectionFactory;
 public class ActiveMqConnectionFactoryConfig {
 
     @Value("${activemq.broker.url}")
-	String brokerUrl;
+    String brokerUrl;
 
-	@Value("${activemq.broker.username}")
-	String userName;
+    @Value("${activemq.broker.username}")
+    String userName;
 
-	@Value("${activemq.broker.password}")
-	String password;
+    @Value("${activemq.broker.password}")
+    String password;
 
 
     @Bean
