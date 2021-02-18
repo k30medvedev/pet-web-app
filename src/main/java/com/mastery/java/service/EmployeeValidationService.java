@@ -1,6 +1,5 @@
 package com.mastery.java.service;
 
-import com.mastery.java.controller.EmployeeController;
 import com.mastery.java.controller.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.sun.istack.NotNull;
@@ -13,7 +12,7 @@ import javax.validation.Valid;
 
 @Service
 public class EmployeeValidationService {
-    private static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
+    private static final Logger logger = LogManager.getLogger(EmployeeValidationService.class.getName());
 
     public void validateUser(@NotNull @Valid EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         Integer departmentId = employeeEntity.getDepartmentId();

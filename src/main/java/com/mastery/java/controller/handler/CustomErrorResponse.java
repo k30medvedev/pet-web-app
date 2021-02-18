@@ -1,4 +1,4 @@
-package com.mastery.java.handler;
+package com.mastery.java.controller.handler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

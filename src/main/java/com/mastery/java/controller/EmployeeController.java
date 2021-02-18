@@ -13,9 +13,10 @@ import org.apache.logging.log4j.Logger;
 
 @Tag(name = "EmployeeController", description = "Interacting with employees")
 @RestController
-public class EmployeeController {
+class EmployeeController {
 
     private static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
+
     private final EmployeeDtoConverter employeeDtoConverter;
     private final EmployeeService employeeService;
     private final JmsProducer jmsProducer;
@@ -34,7 +35,6 @@ public class EmployeeController {
             description = "Get/Select operation,it lets you to get list with all employees"
     )
     @GetMapping("/employees")
-    @ResponseBody
     EmployeeListDto getAll() {
         logger.info("List with all employees are requested");
         return employeeDtoConverter.getEmployeeListDto();
@@ -60,8 +60,7 @@ public class EmployeeController {
     )
     @PutMapping("/employees/{id}")
     EmployeeDto updateUserById(@PathVariable Long id, @RequestBody EmployeeUpdateDto dto)
-            throws DepartmentIdMustBePositiveException
-    {
+            throws DepartmentIdMustBePositiveException {
         EmployeeUpdateReq req = employeeDtoConverter.convertDtoToEmployee(id, dto);
         EmployeeEntity employeeEntity = employeeService.updateUser(req);
         jmsProducer.send(employeeEntity);

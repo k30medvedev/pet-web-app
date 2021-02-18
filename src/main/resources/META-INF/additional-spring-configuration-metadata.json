@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "activemq.broker.url",
-      "type": "java.lang.String",
-      "description": "Description for activemq.broker.url."
-  }
-] }

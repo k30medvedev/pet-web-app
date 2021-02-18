@@ -14,22 +14,23 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 
 import javax.jms.ConnectionFactory;
+
 @Configuration
 @EnableJms
 public class ActiveMqConnectionFactoryConfig {
 
     @Value("${activemq.broker.url}")
-    String brokerUrl;
+    private String brokerUrl;
 
     @Value("${activemq.broker.username}")
-    String userName;
+    private String userName;
 
     @Value("${activemq.broker.password}")
-    String password;
+    private String password;
 
 
     @Bean
-    public ConnectionFactory connectionFactory(){
+    public ConnectionFactory connectionFactory() {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(brokerUrl);
         connectionFactory.setUserName(userName);
@@ -37,20 +38,20 @@ public class ActiveMqConnectionFactoryConfig {
         return connectionFactory;
     }
 
-	@Bean // Serialize message content to json using TextMessage
-	public MessageConverter jacksonJmsMessageConverter() {
-	    MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
-	    converter.setTargetType(MessageType.TEXT);
-	    converter.setTypeIdPropertyName("_type");
-	    return converter;
-	}
+    @Bean // Serialize message content to json using TextMessage
+    public MessageConverter jacksonJmsMessageConverter() {
+        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+        converter.setTargetType(MessageType.TEXT);
+        converter.setTypeIdPropertyName("_type");
+        return converter;
+    }
 
     /*
      * Used for Receiving Message
      */
     @Bean
     public JmsListenerContainerFactory<?> jsaFactory(ConnectionFactory connectionFactory,
-                                                    DefaultJmsListenerContainerFactoryConfigurer configurer) {
+                                                     DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setMessageConverter(jacksonJmsMessageConverter());
         configurer.configure(factory, connectionFactory);
@@ -61,7 +62,7 @@ public class ActiveMqConnectionFactoryConfig {
      * Used for Sending Messages.
      */
     @Bean
-    public JmsTemplate jmsTemplate(){
+    public JmsTemplate jmsTemplate() {
         JmsTemplate template = new JmsTemplate();
         template.setMessageConverter(jacksonJmsMessageConverter());
         template.setConnectionFactory(connectionFactory());
