@@ -3,6 +3,7 @@ package com.mastery.java.service.impl;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
 import com.mastery.java.service.DepartmentIdMustBePositiveException;
+import com.mastery.java.service.EmployeeValidationService;
 import com.mastery.java.service.InvalidDigitalException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

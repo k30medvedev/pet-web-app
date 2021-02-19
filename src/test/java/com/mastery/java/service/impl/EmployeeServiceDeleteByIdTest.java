@@ -3,11 +3,8 @@ package com.mastery.java.service.impl;
 import com.mastery.java.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.Mockito.*;
-
-@SpringBootTest
 class EmployeeServiceDeleteByIdTest {
 
     private EmployeeRepository employeeRepository;

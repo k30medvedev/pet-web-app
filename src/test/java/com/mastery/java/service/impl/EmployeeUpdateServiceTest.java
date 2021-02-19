@@ -4,6 +4,7 @@ import com.mastery.java.controller.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
 import com.mastery.java.service.DepartmentIdMustBePositiveException;
+import com.mastery.java.service.EmployeeValidationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
