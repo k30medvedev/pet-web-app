@@ -7,6 +7,7 @@ import java.util.List;
 
 @Schema(description = "List all employees")
 public class EmployeeListDto {
+
     List<EmployeeDto> employees = new ArrayList<>();
 
     public List<EmployeeDto> getEmployees() {

@@ -4,10 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TaskApplicationTests {
+class TaskApplicationTests extends Postgres {
 
-	@Test
-	void contextLoads() {
-	}
+    @Override
+    public void startSqlConteiner() {
+        super.startSqlConteiner();
+    }
 
+    @Test
+    void contextLoads() {
+    }
 }

@@ -7,15 +7,14 @@ import com.mastery.java.service.EmployeeService;
 import com.mastery.java.service.InvalidDigitalException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.web.bind.annotation.*;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.*;
 
 @Tag(name = "EmployeeController", description = "Interacting with employees")
 @RestController
 class EmployeeController {
 
-    private static final Logger logger = LogManager.getLogger(EmployeeController.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class.getName());
 
     private final EmployeeDtoConverter employeeDtoConverter;
     private final EmployeeService employeeService;
@@ -45,7 +44,8 @@ class EmployeeController {
             description = "Post/Insert operation when you need to add new employee"
     )
     @PostMapping("/employees")
-    EmployeeDto createUser(@RequestBody EmployeeCreationDto dto) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
+    EmployeeDto createUser(@RequestBody EmployeeCreationDto dto)
+            throws DepartmentIdMustBePositiveException, InvalidDigitalException {
         EmployeeEntity employeeEntity = employeeDtoConverter.convertDtoToEmployee(dto);
         employeeEntity = employeeService.createUser(employeeEntity);
         jmsProducer.send(employeeEntity);

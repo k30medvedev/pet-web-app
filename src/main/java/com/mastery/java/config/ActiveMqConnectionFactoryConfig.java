@@ -1,6 +1,8 @@
 package com.mastery.java.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,8 @@ import javax.jms.ConnectionFactory;
 @EnableJms
 public class ActiveMqConnectionFactoryConfig {
 
+    private static final Logger logger = LoggerFactory.getLogger(ActiveMqConnectionFactoryConfig.class.getName());
+
     @Value("${activemq.broker.url}")
     private String brokerUrl;
 
@@ -28,13 +32,13 @@ public class ActiveMqConnectionFactoryConfig {
     @Value("${activemq.broker.password}")
     private String password;
 
-
     @Bean
     public ConnectionFactory connectionFactory() {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(brokerUrl);
         connectionFactory.setUserName(userName);
         connectionFactory.setPassword(password);
+        logger.info("Connectionfactory created successfully");
         return connectionFactory;
     }
 
