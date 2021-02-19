@@ -1,14 +1,15 @@
-package com.mastery.java.service;
+package com.mastery.java.service.impl;
 
 import com.mastery.java.controller.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
+import com.mastery.java.service.EmployeeServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EmployeeService {
+    class EmployeeService implements EmployeeServiceImpl {
     private final EmployeeRepository employeeRepository;
     private final EmployeeUpdateService employeeUpdateService;
     private final EmployeeSearchService employeeSearchService;
@@ -37,11 +38,11 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public EmployeeEntity createUser(EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
+    public EmployeeEntity createUser(EmployeeEntity employeeEntity) {
         return employeeCreateService.createUser(employeeEntity);
     }
 
-    public EmployeeEntity updateUser(EmployeeUpdateReq updateReq) throws DepartmentIdMustBePositiveException {
+    public EmployeeEntity updateUser(EmployeeUpdateReq updateReq) {
         return employeeUpdateService.updateUser(updateReq);
     }
 }

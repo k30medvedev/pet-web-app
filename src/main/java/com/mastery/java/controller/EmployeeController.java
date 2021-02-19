@@ -3,30 +3,30 @@ package com.mastery.java.controller;
 import com.mastery.java.jms.producer.JmsProducer;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.service.DepartmentIdMustBePositiveException;
-import com.mastery.java.service.EmployeeService;
+import com.mastery.java.service.EmployeeServiceImpl;
 import com.mastery.java.service.InvalidDigitalException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.*;
 
 @Tag(name = "EmployeeController", description = "Interacting with employees")
 @RestController
-class EmployeeController {
+public class EmployeeController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class.getName());
 
+    private final EmployeeServiceImpl employeeService;
     private final EmployeeDtoConverter employeeDtoConverter;
-    private final EmployeeService employeeService;
     private final JmsProducer jmsProducer;
 
     public EmployeeController(
             EmployeeDtoConverter employeeDtoConverter,
-            EmployeeService employeeService,
-            JmsProducer jmsProducer) {
+            JmsProducer jmsProducer, EmployeeServiceImpl employeeService) {
         this.employeeDtoConverter = employeeDtoConverter;
-        this.employeeService = employeeService;
         this.jmsProducer = jmsProducer;
+        this.employeeService = employeeService;
     }
 
     @Operation(

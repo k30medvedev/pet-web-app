@@ -1,4 +1,4 @@
-package com.mastery.java.service;
+package com.mastery.java.service.impl;
 
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EmployeeSearchService {
+public class EmployeeSearchService  {
 
     private final EmployeeRepository employeeRepository;
 

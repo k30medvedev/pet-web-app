@@ -1,8 +1,11 @@
-package com.mastery.java.service;
+package com.mastery.java.service.impl;
 
 import com.mastery.java.controller.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
+import com.mastery.java.service.DepartmentIdMustBePositiveException;
+import com.mastery.java.service.impl.EmployeeSearchService;
+import com.mastery.java.service.impl.EmployeeValidationService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +23,7 @@ public class EmployeeUpdateService {
         this.employeeRepository = employeeRepository;
     }
 
-    EmployeeEntity updateUser(EmployeeUpdateReq employeeUpdateReq) throws DepartmentIdMustBePositiveException {
+    public EmployeeEntity updateUser(EmployeeUpdateReq employeeUpdateReq){
         EmployeeEntity user = employeeSearchService.findById(employeeUpdateReq.getId());
         employeeValidationService.validateUserUpdateReq(user, employeeUpdateReq);
         user.setFirstName(employeeUpdateReq.getFirstName());

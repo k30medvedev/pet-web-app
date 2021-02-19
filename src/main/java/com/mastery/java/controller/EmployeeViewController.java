@@ -21,7 +21,7 @@ public class EmployeeViewController {
         return "id-delete";
     }
 
-    @GetMapping ("/delete-by-id")
+    @GetMapping("/delete-by-id")
     public String deleteUserById() {
         return "delete-by-id";
     }

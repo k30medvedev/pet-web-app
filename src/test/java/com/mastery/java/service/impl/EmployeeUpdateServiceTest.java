@@ -1,14 +1,15 @@
-package com.mastery.java.service;
+package com.mastery.java.service.impl;
 
 import com.mastery.java.controller.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
+import com.mastery.java.service.DepartmentIdMustBePositiveException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class EmployeeUpdateServiceTest {

@@ -1,21 +1,22 @@
 package com.mastery.java.controller;
 
 import com.mastery.java.model.EmployeeEntity;
-import com.mastery.java.service.EmployeeService;
+import com.mastery.java.service.EmployeeServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
+
 import java.lang.reflect.Type;
 import java.util.List;
 
 @Component
 public class EmployeeDtoConverter {
 
-    private final EmployeeService employeeService;
+    private final EmployeeServiceImpl employeeService;
     private final ModelMapper modelMapper;
 
     public EmployeeDtoConverter(
-            EmployeeService employeeService,
+            EmployeeServiceImpl employeeService,
             ModelMapper modelMapper) {
         this.employeeService = employeeService;
         this.modelMapper = modelMapper;
