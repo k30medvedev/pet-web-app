@@ -6,7 +6,7 @@
         $(document).ready(function () {
             var variable = localStorage["name"];
             localStorage.clear();
-            url = "http://localhost:8090/employees/" + variable;
+            url = "http://localhost:8050/employees/" + variable;
             fetch(url, {method: 'DELETE'
             })
             $("#employeesJson").append("User with id: "+ variable + ": was successfully deleted");

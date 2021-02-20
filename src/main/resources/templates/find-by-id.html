@@ -7,7 +7,7 @@
             var variable = localStorage["name"];
             localStorage.clear();
             $(function () {
-                $.getJSON("http://localhost:8090/employees/" + variable,
+                $.getJSON("http://localhost:8050/employees/" + variable,
                     function (result) {
                         $.each(result, function (key, value) {
                             $("#employeesJson").append(key + ":" + value + "<br \\/>");

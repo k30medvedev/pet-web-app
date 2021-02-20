@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $.getJSON("http://localhost:8090/employees",
+            $.getJSON("http://localhost:8050/employees",
                 (data) => $("div").html(data.employees.reduce((sum, em) => sum + "<br>"
                     + "id:" + em.id + "-"
                     + em.firstName + " "
