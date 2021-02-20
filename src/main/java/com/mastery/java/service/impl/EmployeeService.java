@@ -2,25 +2,24 @@ package com.mastery.java.service.impl;
 
 import com.mastery.java.controller.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
-import com.mastery.java.repository.EmployeeRepository;
 import com.mastery.java.service.EmployeeServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-    class EmployeeService implements EmployeeServiceImpl {
-    private final EmployeeRepository employeeRepository;
+class EmployeeService implements EmployeeServiceImpl {
+
+    private final EmployeeDeleteService employeeDeleteService;
     private final EmployeeUpdateService employeeUpdateService;
     private final EmployeeSearchService employeeSearchService;
     private final EmployeeCreateService employeeCreateService;
 
     public EmployeeService(
-            EmployeeRepository employeeRepository,
-            EmployeeUpdateService employeeUpdateService,
+            EmployeeDeleteService employeeDeleteService, EmployeeUpdateService employeeUpdateService,
             EmployeeSearchService employeeSearchService,
             EmployeeCreateService employeeCreateService) {
-        this.employeeRepository = employeeRepository;
+        this.employeeDeleteService = employeeDeleteService;
         this.employeeUpdateService = employeeUpdateService;
         this.employeeSearchService = employeeSearchService;
         this.employeeCreateService = employeeCreateService;
@@ -35,7 +34,7 @@ import java.util.List;
     }
 
     public void deleteById(Long id) {
-        employeeRepository.deleteById(id);
+        employeeDeleteService.deleteById(id);
     }
 
     public EmployeeEntity createUser(EmployeeEntity employeeEntity) {

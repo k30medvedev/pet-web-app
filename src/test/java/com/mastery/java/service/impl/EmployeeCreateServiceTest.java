@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-class EmployeeCreateServiceTest  {
+class EmployeeCreateServiceTest {
 
     private EmployeeRepository employeeRepository;
     private EmployeeValidationService employeeValidationService;
@@ -52,11 +52,12 @@ class EmployeeCreateServiceTest  {
     }
 
     @Test
-    void departmentIdMustBePositiveExceptionTest() throws DepartmentIdMustBePositiveException, InvalidDigitalException {
+    void shouldCheckThatDepartmentIdMustBePositiveExceptionTest() {
 
         //GIVEN
         EmployeeEntity employeeEntity = mock(EmployeeEntity.class);
-        doThrow(DepartmentIdMustBePositiveException.class).when(employeeValidationService).validateUser(employeeEntity);
+        doThrow(DepartmentIdMustBePositiveException.class)
+                .when(employeeValidationService).validateUser(employeeEntity);
 
         //WHEN
         Assertions.assertThrows(
@@ -67,6 +68,27 @@ class EmployeeCreateServiceTest  {
         verifyNoInteractions(employeeEntity, employeeRepository);
         verify(employeeValidationService).validateUser(employeeEntity);
         verifyNoMoreInteractions(employeeValidationService);
+
+    }
+
+    @Test
+    void shouldCheckExceptionNameMustBeOnlyLiteralsTest() {
+
+        //GIVEN
+        EmployeeEntity employeeEntity = mock(EmployeeEntity.class);
+        doThrow(InvalidDigitalException.class)
+                .when(employeeValidationService).validateUser(employeeEntity);
+
+        //WHEN
+        Assertions.assertThrows(
+                InvalidDigitalException.class,
+                () -> employeeCreateService.createUser(employeeEntity));
+
+        //THEN
+        verifyNoInteractions(employeeEntity, employeeRepository);
+        verify(employeeValidationService).validateUser(employeeEntity);
+        verifyNoMoreInteractions(employeeValidationService);
+
     }
 
 }

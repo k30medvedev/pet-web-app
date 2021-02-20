@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TaskApplicationTests extends Postgres {
 
     @Override
-    public void startSqlConteiner() {
-        super.startSqlConteiner();
+    public void startSqlContainer() {
+        super.startSqlContainer();
     }
 
     @Test

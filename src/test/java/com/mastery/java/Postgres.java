@@ -25,7 +25,7 @@ public class Postgres {
     }
 
     @Test
-    public void startSqlConteiner() {
+    public void startSqlContainer() {
         boolean postgreSQLContainerRunning = postgreSQLContainer.isRunning();
         System.out.println(postgreSQLContainerRunning);
     }

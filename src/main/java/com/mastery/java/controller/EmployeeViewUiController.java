@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class EmployeeViewController {
+public class EmployeeViewUiController {
 
     @GetMapping("/view-employees")
     public String viewEmployees() {
@@ -34,6 +34,11 @@ public class EmployeeViewController {
     @GetMapping("/add-new-employee")
     public String addNewEmployee() {
         return "add-new-employee";
+    }
+
+    @GetMapping("/update-by-id")
+    public String updateEmployee() {
+        return "update-by-id.html";
     }
 
     @GetMapping("/")

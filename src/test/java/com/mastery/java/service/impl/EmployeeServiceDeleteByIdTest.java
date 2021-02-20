@@ -8,34 +8,23 @@ import static org.mockito.Mockito.*;
 class EmployeeServiceDeleteByIdTest {
 
     private EmployeeRepository employeeRepository;
-    private EmployeeUpdateService employeeUpdateService;
-    private EmployeeSearchService employeeSearchService;
-    private EmployeeCreateService employeeCreateService;
-    private EmployeeService employeeService;
-
+    private EmployeeDeleteService employeeDeleteService;
     @BeforeEach
     void setUp() {
         employeeRepository = mock(EmployeeRepository.class);
-        employeeUpdateService = mock(EmployeeUpdateService.class);
-        employeeSearchService = mock(EmployeeSearchService.class);
-        employeeCreateService = mock(EmployeeCreateService.class);
-
-        employeeService = new EmployeeService(
-                employeeRepository,
-                employeeUpdateService,
-                employeeSearchService,
-                employeeCreateService);
+        employeeDeleteService = new EmployeeDeleteService(
+                employeeRepository);
 
     }
 
     @Test
     void shouldDeleteById() {
         //GIVEN
-        Long id = 101L;
+        Long id = 1L;
         doNothing().when(employeeRepository).deleteById(id);
 
         //WHEN
-        employeeService.deleteById(id);
+        employeeDeleteService.deleteById(id);
 
         //THEN
         verify(employeeRepository, only()).deleteById(id);
