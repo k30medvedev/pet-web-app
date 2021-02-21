@@ -1,6 +1,6 @@
 # my-web-app
-Pet-projcect 12.02.2021
-Restful,postgresql
+Pet-project 12.02.2021
+Restful app
 
 server.port=8090
 
