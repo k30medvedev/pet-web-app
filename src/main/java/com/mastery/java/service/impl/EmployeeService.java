@@ -1,6 +1,6 @@
 package com.mastery.java.service.impl;
 
-import com.mastery.java.controller.EmployeeUpdateReq;
+import com.mastery.java.controller.dto.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.service.EmployeeServiceImpl;
 import org.springframework.stereotype.Service;

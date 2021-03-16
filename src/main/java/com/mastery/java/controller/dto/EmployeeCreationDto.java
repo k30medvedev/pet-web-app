@@ -1,4 +1,4 @@
-package com.mastery.java.controller;
+package com.mastery.java.controller.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

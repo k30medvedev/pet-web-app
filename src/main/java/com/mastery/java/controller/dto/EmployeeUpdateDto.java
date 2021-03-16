@@ -1,20 +1,16 @@
-package com.mastery.java.controller;
+package com.mastery.java.controller.dto;
 
 import com.sun.istack.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class EmployeeUpdateReq {
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    @Id
-    @Column(name = "employee_id")
-    private Long id;
+@Schema(description = "User entity")
+public class EmployeeUpdateDto {
 
     @Schema(description = "First name, text only", example = "Anna")
     @NotNull
@@ -49,14 +45,6 @@ public class EmployeeUpdateReq {
     @NotNull
     @Column(name = "date_of_birth")
     private LocalDate birthday;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

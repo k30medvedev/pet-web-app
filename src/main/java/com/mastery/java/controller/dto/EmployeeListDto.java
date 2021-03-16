@@ -1,4 +1,4 @@
-package com.mastery.java.controller;
+package com.mastery.java.controller.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

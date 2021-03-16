@@ -1,6 +1,6 @@
 package com.mastery.java.service;
 
-import com.mastery.java.controller.EmployeeUpdateReq;
+import com.mastery.java.controller.dto.EmployeeUpdateReq;
 import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
 import com.sun.istack.NotNull;

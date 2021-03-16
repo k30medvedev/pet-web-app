@@ -1,5 +1,6 @@
 package com.mastery.java.controller;
 
+import com.mastery.java.controller.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
@@ -65,5 +66,10 @@ public class EmployeeController {
     @DeleteMapping("/employees/{id}")
     EmployeeDeleteDto deleteUser(@PathVariable("id") Long id) {
         return employeeDtoUtil.delete(id);
+    }
+
+    @GetMapping("/swagger")
+    public String swaggerUi() {
+        return "redirect:/swagger-ui.html";
     }
 }
