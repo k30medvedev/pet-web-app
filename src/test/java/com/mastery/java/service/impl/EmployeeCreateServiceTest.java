@@ -4,7 +4,6 @@ import com.mastery.java.model.EmployeeEntity;
 import com.mastery.java.repository.EmployeeRepository;
 import com.mastery.java.service.DepartmentIdMustBePositiveException;
 import com.mastery.java.service.EmployeeValidationService;
-import com.mastery.java.service.InvalidDigitalException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ class EmployeeCreateServiceTest {
     }
 
     @Test
-    void shouldCreateUserTest() throws DepartmentIdMustBePositiveException, InvalidDigitalException {
+    void shouldCreateUserTest() throws DepartmentIdMustBePositiveException {
         //GIVEN
         EmployeeEntity employeeEntity = mock(EmployeeEntity.class);
         LocalDate birthday = LocalDate.of(1988, 3, 15);
@@ -71,24 +70,5 @@ class EmployeeCreateServiceTest {
 
     }
 
-    @Test
-    void shouldCheckExceptionNameMustBeOnlyLiteralsTest() {
-
-        //GIVEN
-        EmployeeEntity employeeEntity = mock(EmployeeEntity.class);
-        doThrow(InvalidDigitalException.class)
-                .when(employeeValidationService).validateUser(employeeEntity);
-
-        //WHEN
-        Assertions.assertThrows(
-                InvalidDigitalException.class,
-                () -> employeeCreateService.createUser(employeeEntity));
-
-        //THEN
-        verifyNoInteractions(employeeEntity, employeeRepository);
-        verify(employeeValidationService).validateUser(employeeEntity);
-        verifyNoMoreInteractions(employeeValidationService);
-
-    }
 
 }

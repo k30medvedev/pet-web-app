@@ -13,12 +13,11 @@ public class EmployeeController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class.getName());
 
-
-    private final EmployeeDtoUtil employeeDtoUtil;
+    private final Util util;
 
     public EmployeeController(
-            EmployeeDtoUtil employeeDtoUtil) {
-        this.employeeDtoUtil = employeeDtoUtil;
+            Util util) {
+        this.util = util;
 
     }
 
@@ -28,7 +27,7 @@ public class EmployeeController {
     )
     @GetMapping("/employees")
     EmployeeListDto getAll() {
-        return employeeDtoUtil.getEmployeeListDto();
+        return util.getEmployeeListDto();
     }
 
     @Operation(
@@ -37,7 +36,7 @@ public class EmployeeController {
     )
     @PostMapping("/employees")
     EmployeeDto createUser(@RequestBody EmployeeCreationDto dto) {
-        return employeeDtoUtil.create(dto);
+        return util.create(dto);
     }
 
     @Operation(
@@ -46,7 +45,7 @@ public class EmployeeController {
     )
     @PutMapping("/employees/{id}")
     EmployeeDto updateUserById(@PathVariable Long id, @RequestBody EmployeeUpdateDto dto) {
-        return employeeDtoUtil.update(id, dto);
+        return util.update(id, dto);
     }
 
 
@@ -56,7 +55,7 @@ public class EmployeeController {
     )
     @GetMapping("/employees/{id}")
     EmployeeDto findUser(@PathVariable Long id) {
-        return employeeDtoUtil.findUser(id);
+        return util.findUser(id);
     }
 
     @Operation(
@@ -65,7 +64,7 @@ public class EmployeeController {
     )
     @DeleteMapping("/employees/{id}")
     EmployeeDeleteDto deleteUser(@PathVariable("id") Long id) {
-        return employeeDtoUtil.delete(id);
+        return util.delete(id);
     }
 
     @GetMapping("/swagger")

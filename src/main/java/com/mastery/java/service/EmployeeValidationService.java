@@ -24,12 +24,11 @@ public class EmployeeValidationService {
         this.employeeRepository = employeeRepository;
     }
 
-    public void validateUser(@NotNull @Valid EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException, InvalidDigitalException {
+    public void validateUser(@NotNull @Valid EmployeeEntity employeeEntity) throws DepartmentIdMustBePositiveException {
         Integer departmentId = employeeEntity.getDepartmentId();
         String firstName = employeeEntity.getFirstName();
         String lastName = employeeEntity.getLastName();
         LocalDate birthDay = employeeEntity.getBirthday();
-        String expression = "[A-Z][a-z]*";
 
         if (departmentId <= 0) {
             logger.error("Id department must be more then 0.Your chose is : ");
@@ -48,11 +47,6 @@ public class EmployeeValidationService {
                         (firstName, lastName, birthDay);
         if (suchPersonAlreadyExists) {
             throw new PersonAlreadyInUseException(firstName,lastName,birthDay);
-        }
-
-
-        if (!firstName.matches(expression) | !lastName.matches(expression)) {
-            throw new InvalidDigitalException(firstName);
         }
 
     }
