@@ -46,6 +46,7 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter:1.15.2'
     testImplementation 'org.testcontainers:postgresql:1.15.2'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.6.28'
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.28'
 }
 
 group = 'com.mastery'
