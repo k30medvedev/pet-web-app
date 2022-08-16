@@ -31,4 +31,7 @@ databaseChangeLog:
         - column:
             name: date_of_birth
             type: DATE
+        - column:
+              name: password
+              type: VARCHAR(128)
 

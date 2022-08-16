@@ -1,4 +1,4 @@
-package com.mastery.java.service;
+package com.mastery.java.exception;
 
 public class InvalidGenderException extends RuntimeException{
     public InvalidGenderException(String checkGender) {

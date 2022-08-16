@@ -11,23 +11,23 @@ services:
       - POSTGRES_PASSWORD=example
       - POSTGRES_USER=employee_user
       - POSTGRES_DB=employee_db
-  activemq:
-    image: webcenter/activemq
-    restart: always
-    ports:
-      - 61613:61613
-      - 61616:61616
-      - 8161:8161
-    environment:
-      - user= admin
-      - password= admin
-      - broker-url= tcp://localhost:61616
-      - queueName=main-queue
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-    - 8080:8080
+#  activemq:
+#    image: webcenter/activemq
+#    restart: always
+#    ports:
+#      - 61613:61613
+#      - 61616:61616
+#      - 8161:8161
+#    environment:
+#      - user= admin
+#      - password= admin
+#      - broker-url= tcp://localhost:61616
+#      - queueName=main-queue
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#    - 8080:8080
 #  myapp:
 #    image: my-web-app-backend:1.0.5
 #    ports:
