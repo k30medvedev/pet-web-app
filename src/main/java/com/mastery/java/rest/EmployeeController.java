@@ -1,4 +1,4 @@
-package com.mastery.java.controller;
+package com.mastery.java.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -11,16 +11,18 @@ import com.mastery.java.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @Validated
-@RequiredArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeService service;
+    private EmployeeService service;
+
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
+    }
 
     @Operation(summary = "Getting user by id", description = "Get/Select operation,it lets you to get list with all employees")
     @ResponseStatus(HttpStatus.OK)

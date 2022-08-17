@@ -12,15 +12,19 @@ import com.mastery.java.model.Employee;
 import com.mastery.java.repository.EmployeeRepository;
 import com.mastery.java.validation.EmployeeValidationServiceImpl;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeValidationServiceImpl employeeValidationServiceImpl;
     private final EmployeeMapper mapper;
+
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository,
+            EmployeeValidationServiceImpl employeeValidationServiceImpl, EmployeeMapper mapper) {
+        this.employeeRepository = employeeRepository;
+        this.employeeValidationServiceImpl = employeeValidationServiceImpl;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<Employee> findAll() {
@@ -39,8 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto createUser(final EmployeeCreationDto dto) {
-        employeeValidationServiceImpl.validateUser(dto);
-        Employee employee = mapper.map(dto);
+        final Employee employee = mapper.map(dto);
+        employeeValidationServiceImpl.validateUser(employee);
         return mapper.map(employeeRepository.save(employee));
     }
 

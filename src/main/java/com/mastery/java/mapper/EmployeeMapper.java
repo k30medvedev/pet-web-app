@@ -7,14 +7,14 @@ import com.mastery.java.dto.EmployeeCreationDto;
 import com.mastery.java.dto.EmployeeDto;
 import com.mastery.java.model.Employee;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.ui.ModelMap;
-
 @Component
-@RequiredArgsConstructor
 public class EmployeeMapper {
 
-    private final ModelMapper mapper;
+    private ModelMapper mapper;
+
+    public EmployeeMapper(ModelMapper mapper) {
+        this.mapper = mapper;
+    }
 
     public Employee map(final EmployeeCreationDto dto) {
         return mapper.map(dto, Employee.class);

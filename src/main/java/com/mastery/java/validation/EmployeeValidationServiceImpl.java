@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
 
-import com.mastery.java.dto.EmployeeCreationDto;
-import com.mastery.java.dto.EmployeeUpdateReq;
 import com.mastery.java.exception.DepartmentIdMustBePositiveException;
 import com.mastery.java.exception.InvalidGenderException;
 import com.mastery.java.exception.PersonAlreadyInUseException;
@@ -24,7 +22,7 @@ public class EmployeeValidationServiceImpl implements EmployeeValidationService 
         this.employeeRepository = employeeRepository;
     }
 
-    public void validateUser(final EmployeeCreationDto employee) {
+    public void validateUser(final Employee employee) {
         Integer departmentId = employee.getDepartmentId();
         String firstName = employee.getFirstName();
         String lastName = employee.getLastName();
@@ -49,11 +47,4 @@ public class EmployeeValidationServiceImpl implements EmployeeValidationService 
 
     }
 
-    public void validateUserUpdateReq(final Employee employee, final EmployeeUpdateReq updateReq) {
-        Integer departmentId = updateReq.getDepartmentId();
-        if (departmentId <= 0) {
-            log.info("Id department must be more then 0.Your chose is : ");
-            throw new DepartmentIdMustBePositiveException(departmentId);
-        }
-    }
 }
